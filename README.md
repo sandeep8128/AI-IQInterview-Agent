@@ -1,126 +1,183 @@
-🚀 InterviewAgent – AI Powered Interview Platform
+# 🤖 AI Interview Agent
 
-An intelligent AI-based Interview Web Application built using the MERN Stack that simulates real interview experiences, generates dynamic questions, and provides smart feedback to help users improve their interview skills.
+An AI-powered Interview Preparation Platform built with the MERN Stack. It helps users practice HR and Technical interviews using AI-generated questions, receive instant feedback, download interview reports as PDF, and purchase interview credits securely using Razorpay.
 
-🌟 Features
+---
 
-✨ AI Interview Simulation
+## 🚀 Features
 
-Real-time interview experience with AI-generated questions
-Adaptive questioning based on user responses
+- 🔐 JWT Authentication
+- 🔑 Google OAuth Login
+- 👤 User Profile Management
+- 🎯 AI Generated Interview Questions
+- 💬 HR & Technical Interview Modes
+- 📄 Resume Based Interview
+- 📊 AI Performance Analytics
+- 📈 Confidence, Communication & Correctness Scores
+- 📥 PDF Interview Report Download
+- 💳 Razorpay Payment Integration
+- 💰 Credit Based Interview System
+- ☁️ MongoDB Atlas Database
+- 🌐 REST API
+- 📱 Responsive UI
 
-🧠 Smart Feedback System
+---
 
-AI evaluates answers
-Provides improvement suggestions
+## 🛠 Tech Stack
 
-🎯 Custom Interview Setup
+### Frontend
+- React.js
+- Vite
+- Tailwind CSS
+- Redux Toolkit
+- Axios
+- Recharts
+- Framer Motion
+- jsPDF
+- html2canvas
 
-Select role (Frontend, Backend, Full Stack, etc.)
-Difficulty level selection
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- Passport.js
+- Google OAuth
+- Multer
+- Razorpay
+- OpenRouter AI
 
-💬 Interactive Chat UI
+---
 
-Smooth conversation flow
-Real-time responses
+## 📂 Project Structure
 
-📊 Performance Tracking
+```
+AI-Interview-Agent
+│
+├── frontend
+│   ├── src
+│   ├── public
+│   └── package.json
+│
+├── backend
+│   ├── controller
+│   ├── routes
+│   ├── model
+│   ├── middleware
+│   ├── config
+│   ├── services
+│   └── server.js
+│
+└── README.md
+```
 
-Score-based evaluation
-Strengths & weaknesses analysis
+---
 
-🔐 Authentication System
+## ⚙️ Installation
 
-User signup & login
-Secure session handling
-🛠️ Tech Stack
+### Clone Repository
 
-Frontend
+```bash
+git clone https://github.com/sandeep8128/AI-Interview-Agent.git
+```
 
-React.js
-Tailwind CSS / CSS
-Axios
+```bash
+cd AI-Interview-Agent
+```
 
-Backend
+---
 
-Node.js
-Express.js
+## Backend Setup
 
-Database
-
-MongoDB
-
-AI Integration
-
-OpenAI API / LLM-based system
-📂 Project Structure
-InterviewAgent/
-│── client/        # React Frontend
-│── server/        # Node + Express Backend
-│── models/        # MongoDB Models
-│── routes/        # API Routes
-│── controllers/   # Logic handling
-│── utils/         # Helper functions
-│── .env           # Environment variables
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
-git clone https://github.com/Jitesh7140/InterviewAgent.git
-cd InterviewAgent
-2️⃣ Install Dependencies
-
-👉 Backend
-
-cd server
+```bash
+cd backend
 npm install
+npm run dev
+```
 
-👉 Frontend
+---
 
-cd client
+## Frontend Setup
+
+```bash
+cd frontend
 npm install
-3️⃣ Setup Environment Variables
+npm run dev
+```
 
-Create .env file in server folder:
+---
 
-PORT=5000
-MONGO_URI=your_mongodb_connection
-OPENAI_API_KEY=your_api_key
-JWT_SECRET=your_secret
-4️⃣ Run the Project
+## Environment Variables
 
-👉 Start Backend
+### Backend (.env)
 
-cd server
-npm start
+```env
+PORT=8000
 
-👉 Start Frontend
+MONGODB_URL=YOUR_MONGODB_CONNECTION_STRING
 
-cd client
-npm start
-🎥 How It Works
-User logs in / signs up
-Selects interview role & difficulty
-AI starts asking questions
-User responds in chat
-AI analyzes and gives feedback
-🚀 Future Improvements
-🎤 Voice-based interview
-📄 Resume-based question generation
-📈 Advanced analytics dashboard
-🤖 Multi-agent interview system
-🤝 Contributing
+JWT_SECRET_KEY=YOUR_SECRET
 
-Contributions are welcome!
+OPENROUTER_API_KEY=YOUR_OPENROUTER_KEY
 
-fork → clone → create branch → commit → push → PR
-📜 License
+GOOGLE_CLIENT_ID=YOUR_CLIENT_ID
 
-This project is licensed under the MIT License.
+GOOGLE_CLIENT_SECRET=YOUR_CLIENT_SECRET
 
-👨‍💻 Author
+RAZORPAY_KEY_ID=YOUR_RAZORPAY_KEY
 
-Jitesh Saini
-🔗 GitHub: https://github.com/Jitesh7140
+RAZORPAY_KEY_SECRET=YOUR_RAZORPAY_SECRET
 
-⭐ Support
+CLIENT_URL=http://localhost:5173
+```
 
-If you like this project, don’t forget to ⭐ the repo!
+---
+
+### Frontend (.env)
+
+```env
+VITE_SERVER_URL=http://localhost:8000
+
+VITE_RAZORPAY_KEY_ID=YOUR_RAZORPAY_KEY
+```
+
+---
+
+## 📷 Screenshots
+
+Add your screenshots here.
+
+- Login
+- Dashboard
+- AI Interview
+- Analytics
+- PDF Report
+- Pricing
+
+---
+
+## Future Improvements
+
+- Voice Based Interview
+- Webcam Interview
+- AI Speech Analysis
+- Coding Interview Support
+- Admin Dashboard
+- Email Reports
+- Leaderboard
+
+---
+
+## 👨‍💻 Author
+
+**Sandeep Prajapati**
+
+GitHub:
+https://github.com/sandeep8128
+
+---
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub.
