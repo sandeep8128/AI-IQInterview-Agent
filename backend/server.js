@@ -18,9 +18,11 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 // Allowed frontend origins
+
 const allowedOrigins = [
   "http://localhost:5173",
   "https://interviewagent-2-frontend.onrender.com",
+  "https://ai-iq-interview-agent.vercel.app",
 ];
 
 // Middlewares
