@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
@@ -12,6 +11,7 @@ import InterviewHistory from "./pages/history/InterviewHistory.jsx";
 import Pricing from "./pages/pricing/Pricing.jsx";
 import InterviewReport from "./pages/report/InterviewReport.jsx";
 import PreparationDashboard from "./pages/preparation/PreparationDashboard.jsx";
+import CommunicationCoach from "./pages/CommunicationCoach/CommunicationCoach.jsx";
 
 import Navbar from "./components/Navbar.jsx";
 import { setUser } from "./redux/userSlice.js";
@@ -30,10 +30,9 @@ function App() {
           throw new Error("VITE_SERVER_URL is not configured");
         }
 
-        const response = await axios.get(
-          `${serverUrl}/api/user/getUser`,
-          { withCredentials: true }
-        );
+        const response = await axios.get(`${serverUrl}/api/user/getUser`, {
+          withCredentials: true,
+        });
 
         if (isMounted) {
           dispatch(setUser(response.data?.user || null));
@@ -46,7 +45,7 @@ function App() {
         if (error.response?.status !== 401) {
           console.error(
             "Session restoration failed:",
-            error.response?.data?.message || error.message
+            error.response?.data?.message || error.message,
           );
         }
       }
@@ -71,10 +70,10 @@ function App() {
         <Route path="/history" element={<InterviewHistory />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/report/:id" element={<InterviewReport />} />
-        <Route
-          path="/preparation"
-          element={<PreparationDashboard />}
-        />
+        <Route path="/preparation" element={<PreparationDashboard />} />
+
+        {/* AI English Communication Coach */}
+        <Route path="/communication-coach" element={<CommunicationCoach />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+
 import {
   Bot,
   LogOut,
@@ -11,29 +12,44 @@ import {
   UserRound,
   Target,
 } from "lucide-react";
+
 import { useSelector, useDispatch } from "react-redux";
+
 import { motion, AnimatePresence } from "framer-motion";
+
 import axios from "axios";
+
 import { Link, NavLink, useNavigate } from "react-router-dom";
+
 import { setUser } from "../redux/userSlice";
 
 const API_URL = import.meta.env.VITE_SERVER_URL;
 
 const INK = "#111111";
+
 const ACCENT = "#ee5a2b";
 
 const navLinks = [
   { label: "Home", to: "/", end: true },
+
   { label: "Interview", to: "/interview" },
+
   { label: "History", to: "/history" },
+
   { label: "Preparation", to: "/preparation", icon: Target },
+
+  { label: "Ava AI Coach", to: "/communication-coach", icon: Bot },
+
   { label: "Pricing", to: "/pricing" },
 ];
 
 const dropdownMotion = {
   initial: { opacity: 0, y: -6 },
+
   animate: { opacity: 1, y: 0 },
+
   exit: { opacity: 0, y: -6 },
+
   transition: { duration: 0.16 },
 };
 
@@ -42,18 +58,25 @@ const dropdownClass =
 
 function Navbar() {
   const userData = useSelector((state) => state.user?.userData);
+
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const [isCreditsOpen, setIsCreditsOpen] = useState(false);
+
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const [loggingOut, setLoggingOut] = useState(false);
 
   const creditsRef = useRef(null);
+
   const profileRef = useRef(null);
 
   // Close dropdowns when clicking outside.
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (creditsRef.current && !creditsRef.current.contains(event.target)) {
@@ -73,14 +96,18 @@ function Navbar() {
   }, []);
 
   // Close menus after navigation.
+
   const closeMenus = () => {
     setIsMobileMenuOpen(false);
+
     setIsCreditsOpen(false);
+
     setIsProfileOpen(false);
   };
 
   const handleSignIn = () => {
     closeMenus();
+
     navigate("/auth");
   };
 
@@ -93,39 +120,52 @@ function Navbar() {
       if (API_URL) {
         await axios.post(
           `${API_URL}/api/auth/logout`,
+
           {},
+
           { withCredentials: true },
         );
       }
     } catch (error) {
       console.error(
         "Logout request failed:",
+
         error.response?.data?.message || error.message,
       );
     } finally {
       dispatch(setUser(null));
+
       setLoggingOut(false);
+
       closeMenus();
+
       navigate("/");
     }
   };
 
   const handleCreditsClick = () => {
     setIsCreditsOpen((previous) => !previous);
+
     setIsProfileOpen(false);
   };
 
   const handleProfileClick = () => {
     setIsProfileOpen((previous) => !previous);
+
     setIsCreditsOpen(false);
   };
 
   const desktopLinkClass = ({ isActive }) =>
     `relative inline-flex min-h-11 items-center justify-center gap-2
+
     whitespace-nowrap rounded-full px-3.5 py-2.5 text-sm font-semibold
+
     transition-all duration-200 xl:px-4
+
     focus-visible:outline-none focus-visible:ring-2
+
     focus-visible:ring-[#ee5a2b]
+
     ${
       isActive
         ? "bg-[#ee5a2b]/10 text-[#d9481b] shadow-sm ring-1 ring-[#ee5a2b]/20"
@@ -134,7 +174,9 @@ function Navbar() {
 
   const mobileLinkClass = ({ isActive }) =>
     `flex min-h-12 items-center gap-3 rounded-xl px-4 py-3
+
     text-sm font-semibold transition-all duration-200
+
     ${
       isActive
         ? "bg-[#ee5a2b]/10 text-[#d9481b] ring-1 ring-[#ee5a2b]/20"
@@ -150,12 +192,15 @@ function Navbar() {
     >
       <style>
         {`
-          @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap');
+
+          @import url('https\://fonts.googleapis.com/css2?family=Inter+Tight:wght\@400;500;600;700&display=swap');
+
         `}
       </style>
 
       <div className="mx-auto flex min-h-[76px] max-w-[1440px] items-center justify-between gap-3 px-4 sm:min-h-[82px] sm:px-6 lg:px-8 xl:px-10">
         {/* Brand */}
+
         <Link
           to="/"
           onClick={closeMenus}
@@ -175,6 +220,7 @@ function Navbar() {
         </Link>
 
         {/* Desktop navigation */}
+
         <nav
           aria-label="Main navigation"
           className="hidden items-center gap-1 lg:flex xl:gap-2"
@@ -190,6 +236,7 @@ function Navbar() {
                 className={desktopLinkClass}
               >
                 {Icon && <Icon size={16} strokeWidth={2} />}
+
                 {item.label}
               </NavLink>
             );
@@ -197,10 +244,12 @@ function Navbar() {
         </nav>
 
         {/* Desktop actions */}
+
         <div className="hidden shrink-0 items-center gap-3 lg:flex xl:gap-4">
           {userData ? (
             <>
               {/* Credits dropdown */}
+
               <div className="relative" ref={creditsRef}>
                 <button
                   type="button"
@@ -209,7 +258,9 @@ function Navbar() {
                   className="flex min-h-11 items-center gap-2 rounded-full border border-neutral-200 bg-white px-3.5 py-2 text-sm font-semibold transition hover:border-[#ee5a2b]/50 hover:shadow-sm"
                 >
                   <Coins size={17} style={{ color: ACCENT }} />
+
                   <span>{userData.credits ?? 0}</span>
+
                   <ChevronDown size={14} className="text-neutral-400" />
                 </button>
 
@@ -227,6 +278,7 @@ function Navbar() {
                         <span className="text-3xl font-bold text-[#111111]">
                           {userData.credits ?? 0}
                         </span>
+
                         <span className="ml-2 text-xs text-neutral-500">
                           credits left
                         </span>
@@ -237,6 +289,7 @@ function Navbar() {
                           type="button"
                           onClick={() => {
                             closeMenus();
+
                             navigate("/pricing");
                           }}
                           className="flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-white transition hover:opacity-90"
@@ -252,6 +305,7 @@ function Navbar() {
               </div>
 
               {/* Profile dropdown */}
+
               <div className="relative" ref={profileRef}>
                 <button
                   type="button"
@@ -274,6 +328,7 @@ function Navbar() {
                         <p className="truncate text-sm font-bold text-[#111111]">
                           {userData.name || "User"}
                         </p>
+
                         <p className="mt-1 truncate text-xs text-neutral-500">
                           {userData.email}
                         </p>
@@ -284,6 +339,7 @@ function Navbar() {
                           type="button"
                           onClick={() => {
                             closeMenus();
+
                             navigate("/history");
                           }}
                           className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100"
@@ -296,6 +352,7 @@ function Navbar() {
                           type="button"
                           onClick={() => {
                             closeMenus();
+
                             navigate("/preparation");
                           }}
                           className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100"
@@ -308,6 +365,7 @@ function Navbar() {
                           type="button"
                           onClick={() => {
                             closeMenus();
+
                             navigate("/pricing");
                           }}
                           className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100"
@@ -325,6 +383,7 @@ function Navbar() {
                           className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-red-600 transition hover:bg-red-50 disabled:opacity-60"
                         >
                           <LogOut size={17} />
+
                           {loggingOut ? "Logging out..." : "Log out"}
                         </button>
                       </div>
@@ -345,6 +404,7 @@ function Navbar() {
         </div>
 
         {/* Mobile menu button */}
+
         <button
           type="button"
           onClick={() => setIsMobileMenuOpen((previous) => !previous)}
@@ -357,6 +417,7 @@ function Navbar() {
       </div>
 
       {/* Mobile navigation */}
+
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -382,6 +443,7 @@ function Navbar() {
                     className={mobileLinkClass}
                   >
                     {Icon && <Icon size={18} />}
+
                     {item.label}
                   </NavLink>
                 );
@@ -407,6 +469,7 @@ function Navbar() {
                         <p className="truncate text-sm font-bold">
                           {userData.name || "User"}
                         </p>
+
                         <p className="truncate text-xs text-neutral-500">
                           {userData.email}
                         </p>
@@ -418,6 +481,7 @@ function Navbar() {
                     type="button"
                     onClick={() => {
                       closeMenus();
+
                       navigate("/pricing");
                     }}
                     className="mt-2 flex min-h-12 items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-semibold text-neutral-700 transition hover:bg-white"
@@ -433,6 +497,7 @@ function Navbar() {
                     className="mt-1 flex min-h-12 items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-semibold text-red-600 transition hover:bg-red-50 disabled:opacity-60"
                   >
                     <LogOut size={18} />
+
                     {loggingOut ? "Logging out..." : "Log out"}
                   </button>
                 </>
