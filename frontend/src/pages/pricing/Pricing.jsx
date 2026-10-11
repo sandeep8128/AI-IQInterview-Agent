@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, ArrowLeft, Loader2 } from "lucide-react";
+import {
+  Check,
+  ArrowLeft,
+  ArrowRight,
+  Loader2,
+  ShieldCheck,
+} from "lucide-react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/userSlice";
@@ -74,7 +80,7 @@ const Pricing = () => {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: result.data.amount,
         currency: "INR",
-        name: "InterviewAgent",
+        name: "AI Interview Agent",
         description: "Payment for interview credits",
         image: "https://example.com/logo.png",
         order_id: result.data.id,
@@ -103,7 +109,7 @@ const Pricing = () => {
           }
         },
         theme: {
-          color: "#10b981",
+          color: "#ee5a2b",
         },
       };
 
@@ -118,28 +124,46 @@ const Pricing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAF9] py-16 px-4 font-sans text-slate-900">
-      <div className="max-w-6xl mx-auto">
+    <div className="relative min-h-screen overflow-x-clip bg-[#f6f5f3] px-4 py-12 font-sans text-[#111111] sm:py-16">
+      {/* Soft background glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-0 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-[#ee5a2b] opacity-15 blur-[110px]"
+      />
+
+      <div className="relative mx-auto max-w-6xl">
         {/* Back Button */}
         <button
+          type="button"
           onClick={() => window.history.back()}
-          className="mb-8 p-2 bg-white rounded-full border border-gray-200 hover:shadow-md transition-all group"
+          aria-label="Go back"
+          className="group mb-8 flex h-11 w-11 items-center justify-center rounded-full border border-neutral-200 bg-white shadow-sm transition hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ee5a2b]"
         >
-          <ArrowLeft className="w-5 h-5 text-gray-600 group-hover:-translate-x-1 transition-transform" />
+          <ArrowLeft className="h-5 w-5 text-neutral-700 transition-transform group-hover:-translate-x-1" />
         </button>
 
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-black text-slate-800 mb-4">
-            Choose Your Plan
+        <div className="mb-14 text-center sm:mb-16">
+          <div className="mx-auto mb-5 flex w-fit items-center gap-2 rounded-full bg-white px-2 py-1 shadow-sm">
+            <span className="rounded-full bg-[#ee5a2b] px-2 py-0.5 text-[10px] font-bold text-white">
+              PRICING
+            </span>
+            <span className="pr-1 text-[10px] font-medium uppercase tracking-wider text-neutral-500">
+              Credits for every goal
+            </span>
+          </div>
+
+          <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+            Choose your plan
           </h1>
-          <p className="text-gray-500 max-w-md mx-auto font-medium">
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-neutral-600 sm:text-base">
             Flexible pricing to match your interview preparation goals.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-          {plans.map((plan) => {
+        <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3 md:gap-7">
+          {plans.map((plan, index) => {
             const isSelected = selectedPlan === plan.id;
+            const isLoading = loadingPlan === plan.id;
 
             return (
               <motion.div
@@ -147,43 +171,80 @@ const Pricing = () => {
                 onClick={() => setSelectedPlan(plan.id)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.08,
+                  ease: "easeOut",
+                }}
                 whileHover={{ y: -5 }}
-                className={`relative cursor-pointer bg-white rounded-[2.5rem] p-8 border-2 transition-all duration-500 flex flex-col h-full ${
+                className={`relative flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl p-7 transition-all duration-500 sm:p-8 ${
                   isSelected
-                    ? "border-emerald-500 shadow-2xl shadow-emerald-100 scale-105 z-10"
-                    : "border-transparent hover:border-gray-200 shadow-sm"
+                    ? "z-10 bg-[#111111] text-white shadow-[0_30px_70px_rgba(0,0,0,0.3)] md:scale-105"
+                    : "border border-black/5 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.05)] hover:border-neutral-300"
                 }`}
               >
+                {isSelected && (
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-16 -top-20 h-52 w-52 rounded-full bg-[#ee5a2b] opacity-40 blur-[80px]"
+                  />
+                )}
+
                 {plan.tag && (
-                  <span className="absolute top-6 right-8 bg-emerald-50 text-emerald-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider border border-emerald-100">
+                  <span className="absolute right-6 top-6 rounded-full bg-[#ee5a2b] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
                     {plan.tag}
                   </span>
                 )}
 
-                <div className="mb-8">
-                  <h3 className="text-xl font-extrabold text-slate-800 mb-4">
+                <div className="relative mb-8">
+                  <h3 className="mb-5 text-lg font-semibold tracking-tight">
                     {plan.name}
                   </h3>
-                  <div className="flex flex-col mb-4">
-                    <span className="text-4xl font-black text-emerald-600">
+
+                  <div className="flex items-end gap-2">
+                    <span className="text-5xl font-semibold tracking-tight">
                       ₹{plan.price}
                     </span>
-                    <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest mt-1">
-                      {plan.credits}
-                    </span>
                   </div>
-                  <p className="text-gray-500 text-sm leading-relaxed font-medium">
+
+                  <span
+                    className={`mt-3 inline-block rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wider ${
+                      isSelected
+                        ? "bg-white/10 text-[#ff8a5f]"
+                        : "bg-[#fff1ea] text-[#c2410c]"
+                    }`}
+                  >
+                    {plan.credits}
+                  </span>
+
+                  <p
+                    className={`mt-4 text-sm leading-relaxed ${
+                      isSelected ? "text-white/60" : "text-neutral-500"
+                    }`}
+                  >
                     {plan.description}
                   </p>
                 </div>
 
-                <div className="space-y-4 mb-10  grow">
-                  {plan.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center gap-3">
-                      <div className="bg-emerald-500 rounded-full p-0.5 shrink-0">
-                        <Check className="w-3 h-3 text-white" strokeWidth={4} />
-                      </div>
-                      <span className="text-sm font-semibold text-slate-600">
+                <div
+                  className={`relative mb-9 grow space-y-4 border-t pt-7 ${
+                    isSelected ? "border-white/10" : "border-neutral-100"
+                  }`}
+                >
+                  {plan.features.map((feature) => (
+                    <div key={feature} className="flex items-center gap-3">
+                      <span
+                        className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
+                          isSelected ? "bg-[#ee5a2b]" : "bg-[#111111]"
+                        }`}
+                      >
+                        <Check className="h-3 w-3 text-white" strokeWidth={4} />
+                      </span>
+                      <span
+                        className={`text-sm font-medium ${
+                          isSelected ? "text-white/85" : "text-neutral-700"
+                        }`}
+                      >
                         {feature}
                       </span>
                     </div>
@@ -192,7 +253,8 @@ const Pricing = () => {
 
                 {/* Dynamic Button Text Logic */}
                 <button
-                  disabled={loadingPlan === plan.id}
+                  type="button"
+                  disabled={isLoading}
                   onClick={(e) => {
                     e.stopPropagation();
                     if (!isSelected) {
@@ -201,22 +263,44 @@ const Pricing = () => {
                       handlePayment(plan);
                     }
                   }}
-                  className={`w-full py-4 rounded-2xl font-black text-sm transition-all duration-300 active:scale-95 shadow-sm ${
+                  className={`group relative flex w-full items-center justify-between rounded-full py-1.5 pl-6 pr-1.5 text-sm font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ee5a2b] focus-visible:ring-offset-2 ${
                     isSelected
-                      ? "bg-emerald-600 text-white hover:bg-emerald-700 shadow-emerald-200"
-                      : "bg-slate-50 text-slate-400 border border-slate-100"
+                      ? "bg-white text-[#111111] hover:opacity-90"
+                      : "border border-neutral-200 bg-neutral-50 text-neutral-600 hover:border-neutral-400 hover:text-[#111111]"
                   }`}
                 >
-                  {loadingPlan === plan.id
-                    ? "processing..."
+                  {isLoading
+                    ? "Processing..."
                     : isSelected
                       ? "Proceed to Pay"
                       : "Select Plan"}
+
+                  <span
+                    className={`flex h-10 w-10 items-center justify-center rounded-full ${
+                      isSelected
+                        ? "bg-[#ee5a2b] text-white"
+                        : "bg-white text-neutral-400"
+                    }`}
+                  >
+                    {isLoading ? (
+                      <Loader2 size={17} className="animate-spin" />
+                    ) : (
+                      <ArrowRight
+                        size={17}
+                        className="transition group-hover:translate-x-0.5"
+                      />
+                    )}
+                  </span>
                 </button>
               </motion.div>
             );
           })}
         </div>
+
+        <p className="mt-12 flex items-center justify-center gap-2 text-xs text-neutral-500">
+          <ShieldCheck size={15} className="text-[#ee5a2b]" />
+          Secure payments powered by Razorpay
+        </p>
       </div>
     </div>
   );

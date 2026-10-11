@@ -1,51 +1,25 @@
 const express = require("express");
-const passport = require("passport");
-
-const route = express.Router();
+const router = express.Router();
 
 const AuthController = require("../controller/AuthController");
-const { generateToken } = require("../config/JwtToken");
+const isAuth = require("../middlewares/isAuth");
 
-// Old Routes
-route.post("/googleAuth", AuthController.googleAuth);
-route.get("/logout", AuthController.logout);
+// Register
+router.post("/register", AuthController.register);
 
+// Login
+router.post("/login", AuthController.login);
 
-module.exports = route;
+// Forgot password: send reset link to email
+router.post("/forgot-password", AuthController.forgotPassword);
 
-// New Google OAuth Route
-route.get(
-  "/google",
-  passport.authenticate("google", {
-    scope: ["profile", "email"],
-  })
-);
+// Reset password: verify token and update password
+router.post("/reset-password", AuthController.resetPassword);
 
-route.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    session: false,
-  }),
-  async (req, res) => {
-    try {
-      const token = generateToken(req.user._id);
+// Logout
+router.post("/logout", AuthController.logout);
 
-      res.cookie("AuthToken", token, {
-        httpOnly: true,
-        secure: false,
-        sameSite: "lax",
-      });
+// Current logged-in user's profile
+router.get("/profile", isAuth, AuthController.getProfile);
 
-      res.redirect(process.env.CLIENT_URL);
-
-    } catch (error) {
-      console.log(error);
-
-      res.redirect(
-        `${process.env.CLIENT_URL}?auth=failed`
-      );
-    }
-  }
-);
-
-module.exports = route;
+module.exports = router;

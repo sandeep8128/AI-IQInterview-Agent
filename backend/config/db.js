@@ -1,20 +1,30 @@
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
-    try {
-        const conn = await mongoose.connect(process.env.MONGODB_URL);
+  try {
+    const mongoURI = process.env.MONGODB_URL;
 
-        console.log(
-            `✅ MongoDB Connected: ${conn.connection.host}`
-        );
-
-    } catch (error) {
-        console.error(
-            `❌ MongoDB Connection Error: ${error.message}`
-        );
-
-        process.exit(1);
+    if (!mongoURI) {
+      throw new Error("MONGODB_URL is missing in environment variables");
     }
+
+    const conn = await mongoose.connect(mongoURI, {
+      serverSelectionTimeoutMS: 10000,
+    });
+
+    console.log(
+      `✅ MongoDB Connected: ${conn.connection.host}`
+    );
+
+    return conn;
+  } catch (error) {
+    console.error(
+      `❌ MongoDB Connection Error: ${error.message}`
+    );
+
+    // Let server.js handle startup failure.
+    throw error;
+  }
 };
 
 module.exports = connectDB;
