@@ -12,6 +12,7 @@ const InterviewRoute = require("./routes/interviewRoute");
 const PaymentRoute = require("./routes/paymentRoute");
 const PreparationPlanRoute = require("./routes/preparationPlanRoute");
 const communicationRoute = require("./routes/communicationRoute");
+const roadmapRoutes = require("./routes/roadmapRoute");
 
 const connectDB = require("./config/db");
 
@@ -69,6 +70,7 @@ app.use("/api/interview", InterviewRoute);
 app.use("/api/payment", PaymentRoute);
 app.use("/api/preparation-plan", PreparationPlanRoute);
 app.use("/api/communication", communicationRoute);
+app.use("/api/roadmap", roadmapRoutes);
 
 // Handle invalid routes
 app.use((req, res) => {
