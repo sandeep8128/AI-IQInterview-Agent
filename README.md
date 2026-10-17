@@ -1,187 +1,344 @@
-# 🤖 InterviewIQ.AI — AI-Powered Interview Platform
+# 🤖 AI Interview Agent — InterviewIQ.AI
 
-An AI-powered interview preparation platform built with the MERN stack. Practice HR and technical interviews, generate AI-powered questions, receive performance feedback, review interview reports, and manage interview credits.
+**Prepare smarter. Interview better.**
 
-**Live Demo:** https://ai-iq-interview-agent.vercel.app/
+AI Interview Agent is an AI-powered interview preparation platform designed to help students, freshers, and job seekers prepare for interviews, practice technical and HR questions, improve English communication, and track their interview preparation journey.
+
+🔗 **Live Demo:** https://ai-iq-interview-agent.vercel.app/
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+![AI Interview Agent Home Page](./screenshots/home.png)
+
+### 🎯 Interview Setup
+![Interview Configuration](./screenshots/interview.png)
+
+### 📚 Preparation Dashboard
+![AI Interview Preparation Dashboard](./screenshots/preparation.png)
+
+### 🗣️ Ava AI Coach
+![Ava AI Communication Coach](./screenshots/ava-ai-coach.png)
+
+
+
+## 📸 Project Overview
+
+AI Interview Agent provides an interactive platform for interview preparation with AI-powered tools, personalized practice, learning roadmaps, and performance insights.
+
+The platform combines interview simulation, career preparation, resume analysis, and communication practice in one place.
 
 ## ✨ Features
 
-### 🔐 Authentication & User Management
-- User signup and login
-- JWT-based authentication
-- Google OAuth integration
-- Password reset functionality
-- User profile management
+### 🏠 1. Home
 
-### 🎯 AI Interview Practice
-- AI-generated interview questions
-- HR and technical interview modes
-- Custom interview setup with role and difficulty selection
-- Resume-based interview preparation
-- Interactive interview experience
+- Clean and modern landing page.
+- Start a Mock Interview call to action.
+- Role-based interview preparation options.
+- Quick access to the platform's main features.
+- Account registration and sign-in options.
 
-### 📊 Reports & Performance
-- AI-powered answer evaluation
-- Performance analytics
-- Confidence, communication, and correctness scores
-- Strengths and weaknesses analysis
-- Downloadable PDF interview reports
-- Interview history
+### 🎯 2. Interview
 
-### 📚 Interview Preparation Plan
-- Preparation plan dashboard
-- Backend API and database model for preparation plans
+Configure an interview session according to your goals.
 
-### 💳 Payments & Credits
-- Credit-based interview system
-- Razorpay payment integration
-- Pricing page
+- Select your target job role.
+- Enter your experience level.
+- Choose an interview type, such as Technical or HR.
+- Upload your resume for resume-based interview preparation, where supported.
+- Generate personalized interview questions.
+- Practice answering interview questions.
 
-## 🛠️ Tech Stack
+### 📜 3. Interview History
+
+- Access previous interview sessions.
+- Review saved interview details and reports, where available.
+- Track your interview preparation over time.
+
+### 📚 4. Preparation Dashboard
+
+Prepare for your target role with structured learning tools.
+
+- **AI Study Plan:** Generate a personalized interview preparation plan.
+- **Career Roadmap:** Create a learning roadmap based on your target role and selected semester.
+- **Progress Tracking:** Organize learning activities and monitor preparation progress.
+- **Learning Resources:** Access relevant learning topics and resources.
+
+The roadmap generator is designed to focus on the semester selected by the user instead of generating unnecessary semesters.
+
+### 🗣️ 5. Ava AI Coach
+
+An AI-powered English communication practice interface.
+
+- Interactive conversation with the AI coach.
+- Practice speaking and written communication.
+- Topic suggestions for guided practice.
+- Voice and audio controls, where supported.
+- Speaking statistics such as words spoken, speaking pace, vocabulary variety, and possible filler words, where available.
+
+### 💳 6. Pricing
+
+- Dedicated pricing page.
+- Credit balance display for signed-in users.
+- Access to available plans and supported payment workflows.
+
+### 👤 7. Account & Authentication
+
+- User registration and sign-in.
+- Authentication-protected features.
+- Personalized preparation experience.
+- User profile and credit information, where configured.
+
+### 📄 8. Resume Analysis
+
+- Upload a resume for supported analysis workflows.
+- Extract resume text from supported document formats.
+- Use resume information to assist interview preparation, where implemented.
+
+### 📊 9. AI Feedback & Reports
+
+- Review interview performance where reports are generated.
+- Identify strengths and improvement areas.
+- Use feedback to guide future preparation.
+
+*Feature availability may depend on the current application configuration and enabled modules.*
+
+---
+
+## 🖥️ Application Pages
+
+| Page | Purpose |
+|---|---|
+| Home | Landing page and entry point |
+| Interview | Configure and practice interviews |
+| History | Review previous interview sessions |
+| Preparation | AI study plans and career roadmaps |
+| Ava AI Coach | English communication practice |
+| Pricing | View available plans and pricing |
+| Sign in | Access the user account |
+
+---
+
+## 🛠️ Technology Stack
+
+The application uses a modern web development stack. The exact dependencies and integrations may vary by module.
 
 ### Frontend
 - React.js
-- Vite
-- Tailwind CSS
-- Redux Toolkit
+- JavaScript
+- HTML5
+- CSS3
 - Axios
-- Recharts
-- Framer Motion
-- jsPDF
-- html2canvas
 
 ### Backend
 - Node.js
 - Express.js
+- REST APIs
+
+### Database
 - MongoDB
 - Mongoose
-- JWT
-- Passport.js
-- Google OAuth
-- Multer
-- Razorpay
-- OpenRouter AI
-- Nodemailer
 
-## 📂 Project Structure
+### AI & Integrations
+- OpenRouter API for AI-powered generation
+- Firebase authentication integration, where configured
+- Razorpay for supported payment workflows
+- PDF parsing for resume processing
+
+---
+
+## 🏗️ Project Architecture
+
+The application follows a frontend-backend architecture.
 
 ```text
-InterviewAgent/
+AI-Interview-Agent/
+│
 ├── frontend/
 │   ├── src/
-│   │   ├── api/
-│   │   ├── assets/
 │   │   ├── components/
-│   │   └── pages/
-│   ├── public/
-│   └── package.json
+│   │   ├── pages/
+│   │   ├── assets/
+│   │   └── ...
+│   ├── package.json
+│   └── ...
+│
 ├── backend/
-│   ├── config/
-│   ├── controller/
-│   ├── middlewares/
-│   ├── model/
+│   ├── controllers/
 │   ├── routes/
-│   ├── services/
-│   └── server.js
+│   ├── models/
+│   ├── middleware/
+│   ├── server.js
+│   ├── package.json
+│   └── ...
+│
+├── .gitignore
 └── README.md
 ```
 
-## ⚙️ Installation & Setup
+*This is an illustrative structure; use the actual folder names from your repository if they differ.*
 
-### 1. Clone the repository
+---
+
+## 🚀 Live Demo
+
+Try the application here:
+
+### 👉 [AI Interview Agent — Live Application](https://ai-iq-interview-agent.vercel.app/)
+
+Open the live website to explore the available pages and features.
+
+---
+
+## ⚙️ Run Locally
+
+### Prerequisites
+
+Install the following before starting:
+
+- Node.js and npm
+- MongoDB or a MongoDB Atlas connection
+- An OpenRouter API key if using AI-powered features
+- Any additional credentials required by enabled integrations
+
+### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/sandeep8128/AI-IQInterview-Agent.git
-cd AI-IQInterview-Agent
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd AI-Interview-Agent
 ```
 
-### 2. Configure the backend
+Replace `YOUR_GITHUB_REPOSITORY_URL` with your actual GitHub repository URL.
+
+### Step 2: Install Frontend Dependencies
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Use the local URL displayed by your frontend development server.
+
+### Step 3: Install Backend Dependencies
+
+Open another terminal at the project root:
 
 ```bash
 cd backend
 npm install
 ```
 
-Create a `backend/.env` file using the environment variables required by your backend configuration.
+### Step 4: Configure Environment Variables
 
-Example:
+Create a `.env` file inside the backend directory.
+
+Example configuration:
 
 ```env
 PORT=8000
-MONGODB_URL=YOUR_MONGODB_CONNECTION_STRING
-JWT_SECRET_KEY=YOUR_SECRET
-OPENROUTER_API_KEY=YOUR_OPENROUTER_KEY
-GOOGLE_CLIENT_ID=YOUR_CLIENT_ID
-GOOGLE_CLIENT_SECRET=YOUR_CLIENT_SECRET
-RAZORPAY_KEY_ID=YOUR_RAZORPAY_KEY
-RAZORPAY_KEY_SECRET=YOUR_RAZORPAY_SECRET
-CLIENT_URL=http://localhost:5173
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secure_jwt_secret
+
+OPENROUTER_API_KEY=your_openrouter_api_key
+OPENROUTER_MODEL=openai/gpt-4o-mini
+OPENROUTER_MAX_TOKENS=2500
+
+FRONTEND_URL=http://localhost:5173
 ```
 
-Start the backend using the script configured in `backend/package.json`. For example:
+Add any other environment variables required by your existing authentication, payment, email, or AI modules.
+
+**Never upload real API keys, database passwords, JWT secrets, or payment credentials to GitHub.**
+
+### Step 5: Start the Backend
 
 ```bash
 npm run dev
 ```
 
-### 3. Configure the frontend
+Run this command from the backend directory if it is defined in `backend/package.json`. Otherwise, use the start command configured in your project.
 
-Open a second terminal:
+### Step 6: Connect Frontend and Backend
 
-```bash
-cd frontend
-npm install
+Ensure the frontend API base URL points to the correct backend address. For local development, this is commonly `http://localhost:8000`, depending on your configuration.
+
+---
+
+## 🧠 AI Career Roadmap API
+
+The roadmap module generates a focused learning plan for the selected role and semester.
+
+**Endpoint:** `POST /api/roadmap/generate`
+
+Example request:
+
+```json
+{
+  "role": "Full Stack Developer",
+  "semester": 5,
+  "hoursPerWeek": 10
+}
 ```
 
-Create `frontend/.env`:
+The request includes:
 
-```env
-VITE_SERVER_URL=http://localhost:8000
-VITE_RAZORPAY_KEY_ID=YOUR_RAZORPAY_KEY
-```
+- `role`: Target career role.
+- `semester`: Selected semester from 1 to 8.
+- `hoursPerWeek`: Available study time; supported values are 5, 10, 15, or 20.
 
-Start the frontend:
+The expected successful response contains the generated roadmap under `roadmap`, including the selected semester, topics, project ideas, and milestones.
 
-```bash
-npm run dev
-```
+---
 
-Open the local URL printed by Vite in your terminal.
+## 🔐 Security
 
-**Important:** Environment variable names and required values must match the application's current configuration. Never commit real API keys, passwords, database credentials, or `.env` files.
+- Keep secrets in environment variables.
+- Do not commit `.env` files.
+- Validate incoming API requests on the backend.
+- Protect private routes with appropriate authentication middleware.
+- Restrict CORS to trusted origins.
+- Keep private API keys on the server rather than exposing them in frontend code.
 
-## 🔄 How It Works
+---
 
-1. Register or sign in.
-2. Configure an interview using the available options.
-3. Answer AI-generated interview questions.
-4. Receive feedback and performance scores.
-5. Review interview history and reports.
-6. Use preparation features to support further practice.
+## 🎯 Project Objectives
 
-## 🚀 Future Improvements
+- Help students and freshers prepare for job interviews.
+- Provide role-based interview practice.
+- Make interview preparation more structured and accessible.
+- Encourage consistent communication practice.
+- Help users identify learning gaps and improve over time.
 
-- Voice-based interviews
-- Webcam-based interview practice
-- Advanced speech analysis
-- Coding interview support
-- Admin dashboard
-- Enhanced analytics
+---
+
+## 🔮 Future Improvements
+
+Potential future enhancements include:
+
+- More realistic AI voice interviews.
+- Advanced communication and pronunciation feedback.
+- More detailed interview analytics.
+- Additional role-specific interview question sets.
+- Enhanced progress visualizations.
+- More personalized preparation recommendations.
+
+---
 
 ## 👨‍💻 Author
 
 **Sandeep Prajapati**
 
-GitHub: https://github.com/sandeep8128
+B.Tech — Computer Science Engineering
 
-## 🤝 Contributing
+---
 
-Contributions are welcome. Fork the repository, create a branch, make your changes, and submit a pull request.
+## 📄 License
 
-## 📜 License
+No open-source license is specified yet. Add a `LICENSE` file if you decide to distribute this project under a particular license.
 
-Refer to the repository's license file for licensing terms.
+---
 
-## ⭐ Support
-
-If you find this project useful, consider giving the repository a star.
+⭐ **If you find this project useful, consider starring the repository on GitHub.**
