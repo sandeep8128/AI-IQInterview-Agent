@@ -8,27 +8,6 @@ AI Interview Agent is an AI-powered interview preparation platform designed to h
 
 ---
 
-## 📸 Screenshots
-
-## 📸 Project Screenshots
-
-### 🏠 Home Page
-![AI Interview Agent Home Page](![Uploading image.png…]()
-)
-
-### 🎯 Interview Setup
-![Interview Configuration](PASTE_INTERVIEW_SCREENSHOT_DIRECT_URL_HERE)
-
-### 📚 Preparation Dashboard
-![Preparation Dashboard](PASTE_PREPARATION_SCREENSHOT_DIRECT_URL_HERE)
-
-### 🗣️ Ava AI Coach
-![Ava AI Coach](PASTE_AVA_SCREENSHOT_DIRECT_URL_HERE)
-
-
-
-
-
 ## 📸 Project Overview
 
 AI Interview Agent provides an interactive platform for interview preparation with AI-powered tools, personalized practice, learning roadmaps, and performance insights.
