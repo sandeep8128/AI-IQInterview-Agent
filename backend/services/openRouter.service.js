@@ -145,6 +145,14 @@ const askAi = async (messages) => {
       const content = extractContent(choice?.message?.content);
       const finishReason = choice?.finish_reason;
 
+      console.log("OpenRouter diagnostic:", {
+  requestedModel: OPENROUTER_MODEL,
+  returnedModel: response.data?.model || "unknown",
+  finishReason: finishReason || "unknown",
+  contentLength: content.length,
+  contentPreview: content.slice(0, 300),
+});
+
       if (content) {
         if (finishReason === "length") {
           console.warn("OpenRouter response reached the token limit.", {
